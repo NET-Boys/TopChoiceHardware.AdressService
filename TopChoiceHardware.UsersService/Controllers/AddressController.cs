@@ -34,10 +34,10 @@ namespace TopChoiceHardware.AdressService.Controllers
                 return BadRequest(e.Message);
             }
         }
-        //[HttpGet]
-        //public IEnumerable<Domicilio> GetDomicilios(userId)
-        //{
-
-        //}
+        [HttpGet("{userId?}")]
+        public IEnumerable<Domicilio> GetAdressById(int userId)
+        {
+            return _service.DomicilosDeUsuario(userId);
+        }
     }
 }

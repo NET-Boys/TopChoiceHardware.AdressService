@@ -41,6 +41,7 @@ namespace TopChoiceHardware.AdressService
             var connectionString = Configuration.GetSection("ConnectionString").Value;
             services.AddDbContext<DomicilioContext>(options => options.UseSqlServer(connectionString));
             services.AddTransient<IGenericRepository, GenericRepository>();
+            services.AddTransient<IAdressRepository, AdressRepository>();
             services.AddTransient<ILocalidadesService, LocalidadService>();
             services.AddTransient<IProvinciasService, ProvinciaService>();
             services.AddTransient<IDomicilioService, DomicilioService>();

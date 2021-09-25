@@ -12,14 +12,16 @@ namespace TopChoiceHardware.AdressService.Application.Services
     public interface IDomicilioService
     {
         Domicilio CrearDomicilio(DomicilioDto domicilio);
-        IEnumerable<Domicilio> DomicilosDeUsuario(int usuarioId);
+        List<Domicilio> DomicilosDeUsuario(int usuarioId);
     }
     public class DomicilioService: IDomicilioService
     {
         private readonly IGenericRepository _repository;
-        public DomicilioService(IGenericRepository repository)
+        private readonly IAdressRepository _repositoryAdress;
+        public DomicilioService(IGenericRepository repository,IAdressRepository repositoryAdress)
         {
             _repository = repository;
+            _repositoryAdress = repositoryAdress;
         }
 
         public Domicilio CrearDomicilio(DomicilioDto domicilio)
@@ -39,9 +41,11 @@ namespace TopChoiceHardware.AdressService.Application.Services
             return entity;
         }
 
-        public IEnumerable<Domicilio> DomicilosDeUsuario(int usuarioId)
+        public List<Domicilio> DomicilosDeUsuario(int usuarioId)
         {
-            throw new Exception();
+            return _repositoryAdress.GetByUserId(usuarioId).ToList();
         }
+
+
     }
 }
