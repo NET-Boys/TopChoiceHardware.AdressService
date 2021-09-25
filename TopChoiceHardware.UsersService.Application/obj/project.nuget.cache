@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "pU+pKNjJmYm8VUHFV7VM3Efon/b3XXZeczJRjxwhKOYj9aORCm8Gkvs37s1BUL9YfjWY5K71DPztlIruK+tL0w==",
+  "success": true,
+  "projectFilePath": "E:\\Facultad\\Cursando\\Proyecto de software\\TopChoise Hardware\\TopChoiceHardware.AdressService\\TopChoiceHardware.UsersService.Application\\TopChoiceHardware.AdressService.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rodri\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
