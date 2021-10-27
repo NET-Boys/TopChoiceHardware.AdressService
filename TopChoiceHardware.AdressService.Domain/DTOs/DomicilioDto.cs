@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace TopChoiceHardware.AdressService.Domain.DTOs
 {
     public class DomicilioDto
@@ -14,7 +11,5 @@ namespace TopChoiceHardware.AdressService.Domain.DTOs
         public string Number { get; set; }
         public string Observation { get; set; }
         public int UserId { get; set; }
-        public int SupplierId { get; set; }
-        public int OrderId { get; set; }
     }
 }

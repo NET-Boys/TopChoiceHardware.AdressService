@@ -1,22 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TopChoiceHardware.AdressService.AccessData;
 using TopChoiceHardware.AdressService.AccessData.Commands;
 using TopChoiceHardware.AdressService.Application.Services;
 using TopChoiceHardware.AdressService.Domain.Commands;
-using TopChoiceHardware.AdressService.Domain.Entities;
 
 namespace TopChoiceHardware.AdressService
 {
@@ -32,8 +24,13 @@ namespace TopChoiceHardware.AdressService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
+            services.AddCors(c => {
+                c.AddPolicy("AllowOrigin", options => options
+                                                            .AllowAnyOrigin()
+                                                            .AllowAnyMethod()
+                                                            .AllowAnyHeader());
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TopChoiceHardware.AdressService", Version = "v1" });
@@ -42,9 +39,13 @@ namespace TopChoiceHardware.AdressService
             services.AddDbContext<DomicilioContext>(options => options.UseSqlServer(connectionString));
             services.AddTransient<IGenericRepository, GenericRepository>();
             services.AddTransient<IAdressRepository, AdressRepository>();
-            services.AddTransient<ILocalidadesService, LocalidadService>();
+            //services.AddTransient<IDepartamentosService, DepartamentosService>();
+            //services.AddTransient<IMunicipiosService, MunicipioService>();
             services.AddTransient<IProvinciasService, ProvinciaService>();
+            services.AddTransient<ILocalidadService, LocalidadService>();
             services.AddTransient<IDomicilioService, DomicilioService>();
+            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,12 +57,15 @@ namespace TopChoiceHardware.AdressService
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TopChoiceHardware.AdressService v1"));
             }
-
-            app.UseHttpsRedirection();
+            
+            app.UseCors(options => options.AllowAnyOrigin()
+                                          .AllowAnyHeader()
+                                          .AllowAnyHeader());
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseHttpsRedirection();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

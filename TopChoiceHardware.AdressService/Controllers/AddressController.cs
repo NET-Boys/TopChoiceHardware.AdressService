@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TopChoiceHardware.AdressService.Application.Services;
 using TopChoiceHardware.AdressService.Domain.DTOs;
 using TopChoiceHardware.AdressService.Domain.Entities;
@@ -34,10 +31,18 @@ namespace TopChoiceHardware.AdressService.Controllers
                 return BadRequest(e.Message);
             }
         }
+
         [HttpGet("{userId?}")]
-        public IEnumerable<Domicilio> GetAdressById(int userId)
+        public IActionResult GetAdressById(int userId)
         {
-            return _service.DomicilosDeUsuario(userId);
+            try
+            {
+                return Ok(_service.DomicilosDeUsuario(userId));
+            }
+            catch(Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

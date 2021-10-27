@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TopChoiceHardware.AdressService.Domain.Entities
+﻿namespace TopChoiceHardware.AdressService.Domain.Entities
 {
     public class Domicilio
     {
@@ -9,9 +7,8 @@ namespace TopChoiceHardware.AdressService.Domain.Entities
         public int LocalityId { get; set; }
         public string Street { get; set; }
         public string Number { get; set; }
+        public string PostalCode { get; set; }
         public string Observation { get; set; }
         public int? UserId { get; set; }
-        public int? SupplierId { get; set; }
-        public int? OrderId { get; set; }
     }
 }

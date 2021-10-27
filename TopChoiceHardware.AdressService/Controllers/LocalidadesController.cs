@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TopChoiceHardware.AdressService.Application.Services;
-using TopChoiceHardware.AdressService.Domain.DTOs;
 using TopChoiceHardware.AdressService.Domain.Entities;
 
 namespace TopChoiceHardware.AdressService.Controllers
@@ -14,15 +10,16 @@ namespace TopChoiceHardware.AdressService.Controllers
     [ApiController]
     public class LocalidadesController : ControllerBase
     {
-        private readonly ILocalidadesService _service;
+        private readonly ILocalidadService _service;
 
-        public LocalidadesController(ILocalidadesService service)
+        public LocalidadesController(ILocalidadService service)
         {
             _service = service;
         }
 
         [HttpGet("{provinciaId?}")]
-        public IEnumerable<Departamento> GetDeptos(int provinciaId)
+        [ProducesResponseType(typeof(Localidad), StatusCodes.Status200OK)]
+        public IEnumerable<Localidad> GetDeptos(int provinciaId)
         {
             return _service.ListarLocalidades(provinciaId);
         }

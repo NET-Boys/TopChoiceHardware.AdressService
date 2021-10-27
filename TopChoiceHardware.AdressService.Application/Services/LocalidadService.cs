@@ -1,29 +1,24 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TopChoiceHardware.AdressService.Domain.Entities;
-using TopChoiceHardware.AdressService.Domain.Commands;
 using System.Net;
-using Newtonsoft.Json;
+using TopChoiceHardware.AdressService.Domain.Entities;
 
 namespace TopChoiceHardware.AdressService.Application.Services
 {
-    public interface ILocalidadesService
+    public interface ILocalidadService
     {
-        IEnumerable<Departamento> ListarLocalidades(int provinciaId);
+        IEnumerable<Localidad> ListarLocalidades(int provinciaId);
     }
-    public class LocalidadService : ILocalidadesService
+    public class LocalidadService : ILocalidadService
     {
-        
-        public IEnumerable<Departamento> ListarLocalidades(int provinciaId)
+        public IEnumerable<Localidad> ListarLocalidades(int provinciaId)
         {
-            string url = "https://apis.datos.gob.ar/georef/api/departamentos?provincia=" + provinciaId + "&max=1000";
+            string url = "https://apis.datos.gob.ar/georef/api/localidades?provincia=" + provinciaId + "&campos=nombre&max=1000";
             using WebClient wc = new();
             var jsonString = wc.DownloadString(url);
             var model = JsonConvert.DeserializeObject<Root>(jsonString);
-            return model.Departamentos;
+            return model.Localidades.OrderBy(x => x.Nombre);
         }
     }
 }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TopChoiceHardware.AdressService.Domain.Commands;
 using TopChoiceHardware.AdressService.Domain.DTOs;
 using TopChoiceHardware.AdressService.Domain.Entities;
@@ -34,8 +31,8 @@ namespace TopChoiceHardware.AdressService.Application.Services
                 Number = domicilio.Number,
                 Observation = domicilio.Observation,
                 UserId = domicilio.UserId,
-                SupplierId = domicilio.SupplierId,
-                OrderId = domicilio.OrderId
+                //SupplierId = domicilio.SupplierId,
+                //OrderId = domicilio.OrderId
             };
             _repository.Add(entity);
             return entity;
@@ -45,7 +42,5 @@ namespace TopChoiceHardware.AdressService.Application.Services
         {
             return _repositoryAdress.GetByUserId(usuarioId).ToList();
         }
-
-
     }
 }

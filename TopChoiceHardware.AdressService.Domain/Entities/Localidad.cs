@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace TopChoiceHardware.AdressService.Domain.Entities
 {
-    public class Departamento
+    public class Localidad
+
     {
         public string Id { get; set; }
         public string Nombre { get; set; }
-        //public Provincia Provincia { get; set; }
+        
     }
 }

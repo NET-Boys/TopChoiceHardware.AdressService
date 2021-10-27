@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using TopChoiceHardware.AdressService.Domain.Entities;
+﻿using System.Collections.Generic;
 
 namespace TopChoiceHardware.AdressService.Domain.Commands
 {
@@ -17,8 +11,5 @@ namespace TopChoiceHardware.AdressService.Domain.Commands
         void DeleteById<T>(int id) where T : class;
         T GetById<T>(int id) where T : class;
     }
-    public interface IAdressRepository
-    {
-        IEnumerable<Domicilio> GetByUserId(int UserId);
-    }
+    
 }
