@@ -31,8 +31,7 @@ namespace TopChoiceHardware.AdressService.Application.Services
                 Number = domicilio.Number,
                 Observation = domicilio.Observation,
                 UserId = domicilio.UserId,
-                //SupplierId = domicilio.SupplierId,
-                //OrderId = domicilio.OrderId
+                PostalCode=domicilio.PostalCode,
             };
             _repository.Add(entity);
             return entity;

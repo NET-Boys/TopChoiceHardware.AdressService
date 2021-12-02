@@ -29,7 +29,12 @@ namespace TopChoiceHardware.AdressService.AccessData
                 
                 entity.Property(e => e.Number)
                     .IsRequired()
-                    .HasMaxLength(8);
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.PostalCode)
+                    .IsRequired();
+
+
             });
         }
 
